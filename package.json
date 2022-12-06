@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/Tooboi/OOP-Profile-Builder/issues"
   },
-  "homepage": "https://github.com/Tooboi/OOP-Profile-Builder#readme"
+  "homepage": "https://github.com/Tooboi/OOP-Profile-Builder#readme",
+  "dependencies": {
+    "inquirer": "^8.2.4"
+  }
 }
