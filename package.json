@@ -1,0 +1,23 @@
+{
+  "name": "oop-profile-builder",
+  "version": "1.0.0",
+  "description": "Generate a profile for each member of your dev team",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tooboi/OOP-Profile-Builder.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tooboi/OOP-Profile-Builder/issues"
+  },
+  "homepage": "https://github.com/Tooboi/OOP-Profile-Builder#readme"
+}
