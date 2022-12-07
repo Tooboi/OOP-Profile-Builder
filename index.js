@@ -62,17 +62,6 @@ const createManager = () => {
         name: 'officeNumber',
         message: "\u001b[31;1mWhat's your team manager's office number?",
       },
-      {
-        type: 'confirm',
-        name: 'role',
-        message: "\u001b[31;1mWould you like to add another employee?",
-        choices: ['Yes', "Nope, I'm done"],
-        validate: roleInput => {
-            if (roleInput === "Nope, I'm done") {
-                return
-            }
-        }
-    },
     ])
     .then(managerInput => {
         console.log(
@@ -93,42 +82,58 @@ return inquirer.prompt ([
         name: 'role',
         message: "\u001b[31;1mWould you like to add another employee?",
         choices: ['Intern', 'Engineer', "Nope, I'm done"],
-        validate: roleInput => {
-            if (roleInput === "Nope, I'm done") {
-                return
-            }
-        }
     },
     {
         type: 'input',
         name: 'name',
         message: "\u001b[31;1mWhat's your employees name?",
+        when: (input) => input.role !== "Nope, I'm done"
     },
     {
         type: 'input',
         name: 'id',
         message: "\u001b[31;1mWhat's your employees ID?",
+        when: (input) => input.role !== "Nope, I'm done"
     },
     {
         type: 'input',
         name: 'email',
         message: "\u001b[31;1mWhat's your employees email address?",
+        when: (input) => input.role !== "Nope, I'm done"
     },
     {
         type: 'input',
         name: 'school',
         message: "\u001b[31;1mWhere did your employee go to school?",
-        when: (input) => input.role === 'Intern'
+        when: (input) => (input.role === 'Intern' && input.role !== "Nope, I'm done")
     },
     {
         type: 'input',
         name: 'github',
         message: "\u001b[31;1mWhat's your employees GitHub username?",
-        when: (input) => input.role === 'Engineer'
+        when: (input) => (input.role === 'Engineer' && input.role !== "Nope, I'm done")
     }
 ])
 .then(employeeInfo => {
-    let { name, id, email, role, github, school, } = employeeInfo
+    console.log(
+`\u001b[34;1m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+          \u001b[35;1mAdded to the team!
+\u001b[34;1m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`); 
+    
+    let { name, id, email, role, github, school } = employeeInfo;
+    let employee;
+
+    if (role === "Intern") {
+        employee = new Intern (name, id, email, school);
+        console.log(employee);
+    } else if (role === "Engineer") {
+        employee = new Engineer (name, id, email, github);
+        console.log(employee);
+    }
+
+    teamArray.push(employee)
+
+    return newEmployee(teamArray)
 })
 }
 
