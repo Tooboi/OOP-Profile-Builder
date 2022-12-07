@@ -74,44 +74,69 @@ const createManager = () => {
     });
 };
 
+
+
+// Ask if add another employee
+const addEmployee = () => {
+  return inquirer.prompt ([
+    {
+      type: 'confirm',
+      name: 'confirmEmp',
+      message: "\u001b[31;1mWould you like to add another employee?",
+      choices: ['Yes', "Nope, I'm done"],
+  },
+  ])
+  .then (employeeConfirm => {
+    let {confirmEmp} = employeeConfirm
+    if (confirmEmp) {
+      return newEmployee()
+    } else {
+      return
+    }
+  })
+}
+
+
+
+// Add employee
 const newEmployee = () => {
 
 return inquirer.prompt ([
     {
         type: 'list',
         name: 'role',
-        message: "\u001b[31;1mWould you like to add another employee?",
-        choices: ['Intern', 'Engineer', "Nope, I'm done"],
+        message: "\u001b[31;1mWhat's your employees role?",
+        choices: ['Intern', 'Engineer'],
     },
     {
         type: 'input',
         name: 'name',
         message: "\u001b[31;1mWhat's your employees name?",
-        when: (input) => input.role !== "Nope, I'm done"
+        // when: (input) => input.role !== "Nope, I'm done"
     },
     {
         type: 'input',
         name: 'id',
         message: "\u001b[31;1mWhat's your employees ID?",
-        when: (input) => input.role !== "Nope, I'm done"
+        // when: (input) => input.role !== "Nope, I'm done"
     },
     {
         type: 'input',
         name: 'email',
         message: "\u001b[31;1mWhat's your employees email address?",
-        when: (input) => input.role !== "Nope, I'm done"
+        // when: (input) => input.role !== "Nope, I'm done"
     },
     {
         type: 'input',
         name: 'school',
         message: "\u001b[31;1mWhere did your employee go to school?",
-        when: (input) => (input.role === 'Intern' && input.role !== "Nope, I'm done")
+        when: (input) => input.role === 'Intern'
     },
     {
         type: 'input',
         name: 'github',
         message: "\u001b[31;1mWhat's your employees GitHub username?",
-        when: (input) => (input.role === 'Engineer' && input.role !== "Nope, I'm done")
+        when: (input) => input.role === 'Engineer'
     }
 ])
 .then(employeeInfo => {
@@ -125,15 +150,16 @@ return inquirer.prompt ([
 
     if (role === "Intern") {
         employee = new Intern (name, id, email, school);
-        console.log(employee);
+        // console.log(employee);
     } else if (role === "Engineer") {
         employee = new Engineer (name, id, email, github);
-        console.log(employee);
+        // console.log(employee);
     }
 
     teamArray.push(employee)
-
-    return newEmployee(teamArray)
+    
+    return addEmployee()
+    
 })
 }
 
@@ -144,7 +170,7 @@ return inquirer.prompt ([
 
 
 createManager()
-    .then(newEmployee)
+    .then(addEmployee)
     // .then(teamArray => {
     //     return generateHTML(teamArray);
     // })
