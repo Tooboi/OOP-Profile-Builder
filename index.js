@@ -30,13 +30,13 @@ const { listenerCount } = require("process");
 // team array
 const teamArray = [];
 
-// manager prompts
+// Add manager prompts
 const createManager = () => {
   return inquirer
     .prompt([
       {
-        type: 'input',
-        name: 'name',
+        type: "input",
+        name: "name",
         message: "\u001b[31;1mWhat's your team manager's name?",
         validate: (nameInput) => {
           if (nameInput) {
@@ -45,133 +45,121 @@ const createManager = () => {
             console.log("\u001b[34;1m Please enter the manager's name!");
             return false;
           }
-        }
+        },
       },
       {
-        type: 'input',
-        name: 'id',
+        type: "input",
+        name: "id",
         message: "\u001b[31;1mWhat's your team manager's ID?",
       },
       {
-        type: 'input',
-        name: 'email',
+        type: "input",
+        name: "email",
         message: "\u001b[31;1mWhat's your team manager's email address?",
       },
       {
-        type: 'input',
-        name: 'officeNumber',
+        type: "input",
+        name: "officeNumber",
         message: "\u001b[31;1mWhat's your team manager's office number?",
       },
     ])
-    .then(managerInput => {
-        console.log(
-`\u001b[34;1m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    .then((managerInput) => {
+      console.log(
+        `\u001b[34;1m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
           \u001b[35;1mAdded to the team!
-\u001b[34;1m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`);        
-        const { name, id, email, officeNumber } = managerInput;
-        const manager = new Manager(name, id, email, officeNumber);
-        teamArray.push(manager)
+\u001b[34;1m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`
+      );
+      const { name, id, email, officeNumber } = managerInput;
+      const manager = new Manager(name, id, email, officeNumber);
+      teamArray.push(manager);
     });
 };
 
-
-
 // Ask if add another employee
 const addEmployee = () => {
-  return inquirer.prompt ([
-    {
-      type: 'confirm',
-      name: 'confirmEmp',
-      message: "\u001b[31;1mWould you like to add another employee?",
-      choices: ['Yes', "Nope, I'm done"],
-  },
-  ])
-  .then (employeeConfirm => {
-    let {confirmEmp} = employeeConfirm
-    if (confirmEmp) {
-      return newEmployee()
-    } else {
-      return
-    }
-  })
-}
-
-
+  return inquirer
+    .prompt([
+      {
+        type: "list",
+        name: "confirmEmp",
+        message: "\u001b[31;1mWould you like to add another employee?",
+        choices: ["Yes", "Nope, I'm done"],
+      },
+    ])
+    .then((employeeConfirm) => {
+      let { confirmEmp } = employeeConfirm;
+      if (confirmEmp === 'Yes') {
+        return newEmployee();
+      } else {
+        return;
+      }
+    });
+};
 
 // Add employee
 const newEmployee = () => {
-
-return inquirer.prompt ([
-    {
-        type: 'list',
-        name: 'role',
+  return inquirer
+    .prompt([
+      {
+        type: "list",
+        name: "role",
         message: "\u001b[31;1mWhat's your employees role?",
-        choices: ['Intern', 'Engineer'],
-    },
-    {
-        type: 'input',
-        name: 'name',
+        choices: ["Intern", "Engineer"],
+      },
+      {
+        type: "input",
+        name: "name",
         message: "\u001b[31;1mWhat's your employees name?",
-        // when: (input) => input.role !== "Nope, I'm done"
-    },
-    {
-        type: 'input',
-        name: 'id',
+      },
+      {
+        type: "input",
+        name: "id",
         message: "\u001b[31;1mWhat's your employees ID?",
-        // when: (input) => input.role !== "Nope, I'm done"
-    },
-    {
-        type: 'input',
-        name: 'email',
+      },
+      {
+        type: "input",
+        name: "email",
         message: "\u001b[31;1mWhat's your employees email address?",
-        // when: (input) => input.role !== "Nope, I'm done"
-    },
-    {
-        type: 'input',
-        name: 'school',
+      },
+      {
+        type: "input",
+        name: "school",
         message: "\u001b[31;1mWhere did your employee go to school?",
-        when: (input) => input.role === 'Intern'
-    },
-    {
-        type: 'input',
-        name: 'github',
+        when: (input) => input.role === "Intern",
+      },
+      {
+        type: "input",
+        name: "github",
         message: "\u001b[31;1mWhat's your employees GitHub username?",
-        when: (input) => input.role === 'Engineer'
-    }
-])
-.then(employeeInfo => {
-    console.log(
-`\u001b[34;1m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        when: (input) => input.role === "Engineer",
+      },
+    ])
+    .then((employeeInfo) => {
+      console.log(
+        `\u001b[34;1m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
           \u001b[35;1mAdded to the team!
-\u001b[34;1m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`); 
-    
-    let { name, id, email, role, github, school } = employeeInfo;
-    let employee;
+\u001b[34;1m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`
+      );
 
-    if (role === "Intern") {
-        employee = new Intern (name, id, email, school);
-        // console.log(employee);
-    } else if (role === "Engineer") {
-        employee = new Engineer (name, id, email, github);
-        // console.log(employee);
-    }
+      let { name, id, email, role, github, school } = employeeInfo;
+      let employee;
 
-    teamArray.push(employee)
-    
-    return addEmployee()
-    
-})
-}
+      if (role === "Intern") {
+        employee = new Intern(name, id, email, school);
+      } else if (role === "Engineer") {
+        employee = new Engineer(name, id, email, github);
+      }
 
+      teamArray.push(employee);
+      // console.log(teamArray);
+      return addEmployee();
+    });
+};
 
 // write html file
 
-
-
-
-createManager()
-    .then(addEmployee)
-    // .then(teamArray => {
-    //     return generateHTML(teamArray);
-    // })
-    // .then()
+createManager().then(addEmployee);
+// .then(teamArray => {
+//     return generateHTML(teamArray);
+// })
+// .then()
