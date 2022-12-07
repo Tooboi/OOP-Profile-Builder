@@ -15,7 +15,62 @@
 // THEN I am prompted to enter the intern’s name, ID, email, and school, and I am taken back to the menu
 // WHEN I decide to finish building my team
 // THEN I exit the application, and the HTML is generated
-const Employee = require('./lib/Employee');
-const Intern = require('./lib/Intern');
-const Engineer = require('./lib/Engineer');
-const Manager = require('./lib/Manager');
+
+// node modules
+const inquirer = require("inquirer");
+const fs = require("fs");
+
+// employee classes
+const Employee = require("./lib/Employee");
+const Intern = require("./lib/Intern");
+const Engineer = require("./lib/Engineer");
+const Manager = require("./lib/Manager");
+
+// team array
+const teamArray = [];
+
+// manager prompts
+const createManager = () => {
+  return inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "name",
+        message: "What's your team manager's name?",
+        validate: (nameInput) => {
+          if (nameInput) {
+            return true;
+          } else {
+            console.log("Please enter the manager's name!");
+            return false;
+          }
+        }
+      },
+      {
+        type: "input",
+        name: "id",
+        message: "What's your team manager's ID?",
+      },
+      {
+        type: "input",
+        name: "email",
+        message: "What's your team manager's email address?",
+      },
+      {
+        type: "input",
+        name: "officeNumber",
+        message: "What's your team manager's office number?",
+      },
+    ])
+    .then(managerInput => {
+        console.log("Manager added!");
+        const { name, id, email, officeNumber } = managerInput;
+        const manager = new Manager(name, id, email, officeNumber);
+        teamArray.push(manager)
+        console.log(teamArray);
+    });
+};
+console.log(teamArray);
+
+// john.getRole();
+createManager()
