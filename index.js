@@ -157,9 +157,27 @@ const newEmployee = () => {
 };
 
 // write html file
+const writeFile = data => {
+  fs.writeFile('./dist/index.html', data, err => {
+    if (err) {
+      console.log(err);
+      return;
+    } else {
+      console.log('Successfully created team document!');
+    }
+  })
+};
 
-createManager().then(addEmployee);
-// .then(teamArray => {
-//     return generateHTML(teamArray);
-// })
-// .then()
+
+// go go gadget start the prompts
+createManager()
+.then(addEmployee)
+.then(teamArray => {
+    return generateHTML(teamArray);
+})
+.then(pageHTML => {
+  return fs.writeFile(pageHTML);
+})
+.catch(err => {
+  console.log(err);
+});
