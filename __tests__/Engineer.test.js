@@ -10,12 +10,17 @@ describe("Engineer", () => {
         expect(engineer.email).toEqual("barry@gmail.com");
         expect(engineer.github).toEqual("bonny");
       });
-      it("Should create an employee object with name, ID, and email", () => {
-        const employee = new Employee("Barry", 12, "barry@gmail.com");
+      it("Should take GitHub from Engineer", () => {
+        const employee = new Engineer("Barry", 12, "barry@gmail.com", "bonny");
+        const github = employee.getGithub();
   
-        expect(employee.name).toEqual("Barry");
-        expect(employee.id).toEqual(12);
-        expect(employee.email).toEqual("barry@gmail.com");
+        expect(github).toEqual("bonny");
+      });
+      it("Should take role from Engineer", () => {
+        const employee = new Engineer("Barry", 12, "barry@gmail.com", "bonny");
+        const role = employee.getRole();
+  
+        expect(role).toEqual("Engineer");
       });
     });
   });

@@ -10,12 +10,17 @@ describe("Intern", () => {
         expect(intern.email).toEqual("barry@gmail.com");
         expect(intern.school).toEqual("MIT");
       });
-      it("Should create an employee object with name, ID, and email", () => {
-        const employee = new Employee("Barry", 12, "barry@gmail.com");
+      it("Should take school from Intern", () => {
+        const employee = new Intern("Barry", 12, "barry@gmail.com", "MIT");
+        const school = employee.getSchool();
   
-        expect(employee.name).toEqual("Barry");
-        expect(employee.id).toEqual(12);
-        expect(employee.email).toEqual("barry@gmail.com");
+        expect(school).toEqual("MIT");
+      });
+      it("Should take role from Intern", () => {
+        const employee = new Intern("Barry", 12, "barry@gmail.com", "MIT");
+        const role = employee.getRole();
+  
+        expect(role).toEqual("Intern");
       });
     });
   });
