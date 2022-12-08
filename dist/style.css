@@ -68,3 +68,10 @@ body {
     padding: var(--bs-navbar-padding-y) var(--bs-navbar-padding-x);
     background-color: #d5de59;
 }
+.custom-text-muted {
+    --bs-text-opacity: 1;
+    color: #44494e!important;
+}
+a {
+    color: #000;
+}
