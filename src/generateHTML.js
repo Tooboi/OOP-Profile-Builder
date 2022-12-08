@@ -1,8 +1,6 @@
-const Employee = require("../lib/Employee");
-
+// Manager card
 const generateManager = function (manager) {
-  return `
-  <figure class="custom-card m-4 ">
+  return `<figure class="custom-card m-4 ">
   <div class="card-body">
     <h5 class="card-title"><i class="fa-solid fa-paperclip"></i> ${manager.name}</h5>
     <h6 class="card-subtitle mb-2 text-muted">Manager</h6>
@@ -14,8 +12,7 @@ const generateManager = function (manager) {
 }
 
 const generateIntern = function (intern) {
-  return `
-  <figure class="custom-card m-4 ">
+  return `<figure class="custom-card m-4 ">
   <div class="card-body">
     <h5 class="card-title"><i class="fa-solid fa-face-smile"></i> ${intern.name}</h5>
     <h6 class="card-subtitle mb-2 text-muted">Intern</h6>
@@ -27,8 +24,7 @@ const generateIntern = function (intern) {
 };
 
 const generateEngineer = function (engineer) {
-  return `
-  <figure class="custom-card m-4 ">
+  return `<figure class="custom-card m-4 ">
   <div class="card-body">
     <h5 class="card-title"><i class="fa-solid fa-glasses"></i> ${engineer.name}</h5>
     <h6 class="card-subtitle mb-2 text-muted">Engineer</h6>
@@ -44,7 +40,6 @@ generateHTML = (data) => {
 
     for (let i = 0; i < data.length; i++) {
         const employee = data[i];
-        console.log(employee.constructor.name);
         const role = employee.constructor.name;
 
         if(role === 'Manager') {
@@ -71,8 +66,7 @@ generateHTML = (data) => {
 }
 
 const makeTeamPage = function (teamCards) {
-    return `
-    <!DOCTYPE html>
+    return `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -91,7 +85,8 @@ const makeTeamPage = function (teamCards) {
     ></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link rel="stylesheet" href="./style.css" />
-    <title>Document</title>
+    <link rel="icon" href="../images/briefcase-solid.svg">
+    <title>My Team</title>
   </head>
   <body>
     <nav class="navbar bg-light">
