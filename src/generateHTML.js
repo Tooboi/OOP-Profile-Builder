@@ -6,7 +6,7 @@ const generateManager = function (manager) {
     <h6 class="card-subtitle mb-3 custom-text-muted">Manager</h6>
   <hr>
     <p class="card-text mb-2">ID: ${manager.id}</p>
-    <p><a href="#" class="card-text mb-0">${manager.email}</a></p>
+    <p><a href="mailto:${manager.email}" class="card-text mb-0">${manager.email}</a></p>
     <p class="card-text mb-0">Office: ${manager.officeNum}</p>
   </div>
 </figure>`
@@ -19,7 +19,7 @@ const generateIntern = function (intern) {
     <h6 class="card-subtitle mb-3 custom-text-muted">Intern</h6>
     <hr>
     <p class="card-text mb-2">ID: ${intern.id}</p>
-    <p><a href="#" class="card-link mb-0">${intern.email}</a></p>
+    <p><a href="mailto:${intern.email}" class="card-link mb-0">${intern.email}</a></p>
     <p class="card-link mb-0">School: ${intern.school}</p>
   </div>
 </figure>`
@@ -32,7 +32,7 @@ const generateEngineer = function (engineer) {
     <h6 class="card-subtitle mb-3 custom-text-muted">Engineer</h6>
     <hr>
     <p class="card-text mb-2">ID: ${engineer.id}</p>
-    <p><a href="#" class="card-text mb-0">${engineer.email}</a></p>
+    <p><a href="mailto:${engineer.email}" class="card-text mb-0">${engineer.email}</a></p>
     <p class="card-text mb-0">GitHub: <a href="https://github.com/${engineer.github}" class="card-link">${engineer.github}</a></p>
   </div>
 </figure>`
