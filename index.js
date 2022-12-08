@@ -16,12 +16,12 @@
 // WHEN I decide to finish building my team
 // THEN I exit the application, and the HTML is generated
 
+// html content
+const generateHTML = require("./src/generateHTML");
+
 // node modules
 const inquirer = require("inquirer");
 const fs = require("fs");
-
-// html content
-const generateHTML = require("./src/generateHTML")
 
 // employee classes
 // const Employee = require("./lib/Employee");
@@ -92,9 +92,10 @@ const addEmployee = () => {
     .then((employeeConfirm) => {
       let { confirmEmp } = employeeConfirm;
       if (confirmEmp === 'Yes') {
+        console.log(teamArray);
         return newEmployee();
       } else {
-        return;
+        return teamArray;
       }
     });
 };

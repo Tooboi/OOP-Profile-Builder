@@ -1,3 +1,5 @@
+const Employee = require("../lib/Employee");
+
 const generateManager = function (manager) {
   return `
   <figure class="custom-card m-4 ">
@@ -8,7 +10,7 @@ const generateManager = function (manager) {
     <p><a href="#" class="card-link">${manager.email}</a></p>
     <p class="card-link">Office: ${manager.officeNum}</p>
   </div>
-</figure>`;
+</figure>`
 }
 
 const generateIntern = function (intern) {
@@ -21,7 +23,7 @@ const generateIntern = function (intern) {
     <p><a href="#" class="card-link">${intern.email}</a></p>
     <p class="card-link">School: ${intern.school}</p>
   </div>
-</figure>`;
+</figure>`
 };
 
 const generateEngineer = function (engineer) {
@@ -34,7 +36,7 @@ const generateEngineer = function (engineer) {
     <p><a href="#" class="card-link">${engineer.email}</a></p>
     <p class="card-link">GitHub: <a href="#" class="card-link">${engineer.github}</a></p>
   </div>
-</figure>`;
+</figure>`
 };
 
 generateHTML = (data) => {
@@ -42,7 +44,8 @@ generateHTML = (data) => {
 
     for (let i = 0; i < data.length; i++) {
         const employee = data[i];
-        const role = employee.getRole();
+        console.log(employee.constructor.name);
+        const role = employee.constructor.name;
 
         if(role === 'Manager') {
             const makeManager = generateManager(employee);
@@ -62,7 +65,7 @@ generateHTML = (data) => {
     }
 
     const teamCards = totalTeamArray.join('');
-    const companyName = xyz;
+    // const companyName = xyz;
     const makeTeam = makeTeamPage(teamCards);
     return makeTeam;
 }
@@ -93,7 +96,7 @@ const makeTeamPage = function (teamCards) {
   <body>
     <nav class="navbar bg-light">
       <div class="container-fluid">
-        <span class="navbar-brand mb-0 h1">${companyName}</span>
+        <span class="navbar-brand mb-0 h1">Current Team</span>
       </div>
     </nav>
     <main class="d-flex flex-wrap justify-content-center">
@@ -103,4 +106,4 @@ const makeTeamPage = function (teamCards) {
 </html>`
 }
 
-module.export = generateHTML;
+module.exports = generateHTML;
