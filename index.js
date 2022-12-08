@@ -20,12 +20,15 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 
+// html content
+const generateHTML = require("./src/generateHTML")
+
 // employee classes
-const Employee = require("./lib/Employee");
+// const Employee = require("./lib/Employee");
 const Intern = require("./lib/Intern");
 const Engineer = require("./lib/Engineer");
 const Manager = require("./lib/Manager");
-const { listenerCount } = require("process");
+// const { listenerCount } = require("process");
 
 // team array
 const teamArray = [];
@@ -176,7 +179,7 @@ createManager()
     return generateHTML(teamArray);
 })
 .then(pageHTML => {
-  return fs.writeFile(pageHTML);
+  return writeFile(pageHTML);
 })
 .catch(err => {
   console.log(err);
