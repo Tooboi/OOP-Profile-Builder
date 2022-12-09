@@ -33,7 +33,7 @@ const generateEngineer = function (engineer) {
     <hr>
     <p class="card-text mb-2">ID: ${engineer.id}</p>
     <p><a href="mailto:${engineer.email}" class="card-text mb-0">${engineer.email}</a></p>
-    <p class="card-text mb-0">GitHub: <a href="https://github.com/${engineer.github}" class="card-link">${engineer.github}</a></p>
+    <p class="card-text mb-0">GitHub: <a href="https://github.com/${engineer.github}" target="_blank" class="card-link">${engineer.github}</a></p>
   </div>
 </figure>`
 };
