@@ -18,6 +18,8 @@ Using your bash terminal:
 
 Check if you have node installed by running code below, this app was built using `v8.1.4`
 
+If you don't, download it here: [Node.js](https://nodejs.org/en/)
+
 ```
 npm -v
 ```
@@ -29,6 +31,8 @@ npm install
 ```  
 
 ## Usage
+
+For a video demo of the apps functionality go to: [Video Demo](https://drive.google.com/file/d/1r38iQ5qtQR1lEBve88-DJTkRL9tRn80m/view)
 
 Once you've opened the app in vscode and installed the node modules run:
 

@@ -92,7 +92,6 @@ const addEmployee = () => {
     .then((employeeConfirm) => {
       let { confirmEmp } = employeeConfirm;
       if (confirmEmp === 'Yes') {
-        console.log(teamArray);
         return newEmployee();
       } else {
         return teamArray;
